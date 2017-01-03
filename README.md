@@ -48,7 +48,7 @@
     <pre><code>Ex) function myFunction( val, event ){ }</code></pre>
   4. 문자열이나 리터럴 사용 시 작은 따옴표(Single quotes)로 작성하는 것을 기본으로 하고 일관성을 유지한다.
    HTML을 작성할 때에는 큰 따옴표가 기본으로 사용되기 때문에 혼용 시 백슬래시(\)를 이용하여 일일이 이스케이프(escape)하는 상황 등 가독성을 크게 떨어트릴 수 있다.
-    <pre><code>ex) var anchor = '&lt;a href="/' + foo + '.html"&gt;' + foo + '&lt;/a&gt;';&lt;/code&gt;&lt;/pre&gt;
+    <pre><code>ex) var anchor = '&lt;a href="/' + foo + '.html"&gt;' + foo + '&lt;/a&gt;';</code></pre>
   5. 값 비교 시 == 보다는 ===을 활용하여 보다 명확하게 파싱처리하라.
 <br />
 
