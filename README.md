@@ -12,15 +12,13 @@
   1. script 에는 아래와 같이 여러 가지 속성이 있지만 보통 "src"와 "type" 정도만 사용하고, 사실 "type"은 생략하는 것이 안전하다. ( html5에서, html4.01에서는 type필수, html파일의 attr는 쌍따옴표로 표기 )
   2. HTML은 문서의 상단부터 순차적으로 파싱되고 렌더링되기 때문에, script는 문서 하단에서 include 하는 것을 권장한다.
   3. 인라인 스크립트는 페이지 내에 HTML과 자바스크립트 코드가 뒤섞여 가독성을 해치고 디버깅을 어렵게 하는 단점이 있어 사용을 지양하고 외부파일방식을 권장한다. * 꼭 필요한 경우  문서하단에 사용
-
-	<!-- 인라인 스크립트 방식 -->
-	<pre><code>
+	<pre><code>!-- 인라인 스크립트 방식 --
 	&lt;script&gt;
 		function inlineScript() {
 			alert('This is inline Script!!!');
 		}
 	&lt;/script&gt;
-	<!-- 외부 파일 방식 -->
+	!-- 외부 파일 방식 --
 	&lt;script scr="../js/jquery-1.8.3.min.js"&gt;&lt;/script&gt;</code></pre>
 <br />
 
