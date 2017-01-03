@@ -48,7 +48,7 @@
     <pre><code>Ex) function myFunction( val, event ){ }</code></pre>
   4. 문자열이나 리터럴 사용 시 작은 따옴표(Single quotes)로 작성하는 것을 기본으로 하고 일관성을 유지한다.
    HTML을 작성할 때에는 큰 따옴표가 기본으로 사용되기 때문에 혼용 시 백슬래시(\)를 이용하여 일일이 이스케이프(escape)하는 상황 등 가독성을 크게 떨어트릴 수 있다.
-    <pre><code>ex) var anchor = '<a href="/' + foo + '.html">' + foo + '</a>';</code></pre>
+    <pre><code>ex) var anchor = '&lt;a href="/' + foo + '.html"&gt;' + foo + '&lt;/a&gt;';&lt;/code&gt;&lt;/pre&gt;
   5. 값 비교 시 == 보다는 ===을 활용하여 보다 명확하게 파싱처리하라.
 <br />
 
@@ -92,17 +92,17 @@
   2. 네이밍  타입은 변수의 범위와 용도에 따라 총 6가지<br />
     : [ 제한 private ][ 공유 public ][ 전역 global ][ 지역 local ][ 스타틱변수(상수) static ][ 매개변수 Parameters ]
 
-	<pre><code>var DIV = 'div';							// [ 전역변수 ][ 공유 ][ 제한 ]
+	<pre><code>var DIV = 'div';								// [ 전역변수 ][ 공유 ][ 제한 ]
 	var Div = 1; 								// [ 전역변수 ][ 공유 ]
 	var _div = 1;								// [ 전역변수 ][ 제한 ]
-	var _isDiv = false;  							// [ 전역부울값 ][ 제한 ]
-	var _$div = $( '.divClassName' );					// [ 전역변수 ][ 제한 ][ jQuery ]
+	var _isDiv = false;  						// [ 전역부울값 ][ 제한 ]
+	var _$div = $( '.divClassName' );			// [ 전역변수 ][ 제한 ][ jQuery ]
 	function Init(){							// [ 전역함수 ][ 공유 ]
 		var div = 1;							// [ 지역변수 ][ 제한 ]
-		var $div = $( '.divClassName' );   				// [ 지역변수 ][ 제한 ][ jQuery ]
+		var $div = $( '.divClassName' );   			// [ 지역변수 ][ 제한 ][ jQuery ]
 		var isDiv = false;						// [ 지역부울값 ][ 제한 ]
-		function func(name ){						// [ 지역함수 ][ 제한 ]
-			console.log(name ); 					// [ 매개변수 ][ 제한 ]
+		function func(name ){					// [ 지역함수 ][ 제한 ]
+			console.log(name ); 				// [ 매개변수 ][ 제한 ]
 		}
 	}</code></pre>
   3. is : 반환 값이 불린인 함수나 변수,<br />
@@ -124,7 +124,8 @@
   * 파일처리(json, ajax)
   * 최소화와 압축 - 난독화
   * 테스트 자동화 등<br />
-- 코드에서 구성 데이터 분리하기/저장하기 - 제안
+  
+* 코드에서 구성 데이터 분리하기/저장하기 - 제안
 	
 
 
