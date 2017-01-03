@@ -1,4 +1,4 @@
-## AdQUA Frontend Script Guide
+# AdQUA Frontend Script Guide
   1. 본 가이드는 자바스크립트 언어를 다루는 프론트엔드개발자를 대상으로 한다.<br />
   2. 읽고, 관리하기 쉬운 코드를 작성하기 위한 코딩 스타일 규약이다. 자바스크립트는 유연한 문법 구조를 가지고 있어 좀 더 엄격한 코딩 스타일 규약이 필요하다.<br />
   3. 작은 프로젝트라 하더라도 이후 유지 보수 및 추가 개발 등의 관리 이슈가 여전히 존재하기 때문에 코딩 스타일 규약이 필요하다.<br />
@@ -11,14 +11,14 @@
   2. HTML은 문서의 상단부터 순차적으로 파싱되고 렌더링되기 때문에, script는 문서 하단에서 include 하는 것을 권장한다.
   3. 인라인 스크립트는 페이지 내에 HTML과 자바스크립트 코드가 뒤섞여 가독성을 해치고 디버깅을 어렵게 하는 단점이 있어 사용을 지양하고 외부파일방식을 권장한다. * 꼭 필요한 경우  문서하단에 사용
 
-	<!-- 인라인 스크립트 방식 -->
+	<pre><code><!-- 인라인 스크립트 방식 -->
 	&lt;script&gt;
-	function inlineScript() {
-	alert('This is inline Script!!!');
-	}
+		function inlineScript() {
+			alert('This is inline Script!!!');
+		}
 	&lt;/script&gt;
 	<!-- 외부 파일 방식 -->
-	&lt;script scr="../js/jquery-1.8.3.min.js"&gt;&lt;/script&gt;
+	&lt;script scr="../js/jquery-1.8.3.min.js"&gt;&lt;/script&gt;</code></pre>
 <br />
 
 ## 2. 디렉토리, 파일 구성
@@ -61,41 +61,53 @@
   3. selector : jquery의 selector 는 별도로 $식별자를 사용하여 변수화 하고, 최적화하라.<br />
    selector사용 시 element의 유무를 확인하고 실행하라. Ex) if ($mySelection.length) {
   4. event : 이벤트핸들러는 함수로 구분하여 사용<br />
-   IE8 이하 버전 addEventListener()를 지원하지 않으므로, 다음 함수가 필요하다.<br />
-	function addListener(target, type, handler){ if (target.addEventListener){ target.addEventListener(type, handler, false); } else  if (target.attachEvent) { target.attachEvent(“on” + type, handler); } else { target[“on” + type] = handler; } }<br />
+   IE8 이하 버전 addEventListener()를 지원하지 않으므로, 다음 함수가 필요하다.
+	<pre><code>function addListener(target, type, handler){
+		if (target.addEventListener){
+			target.addEventListener(type, handler, false);
+		} else if (target.attachEvent) {
+			target.attachEvent(“on” + type, handler);
+		} else {
+			target[“on” + type] = handler;
+		}
+	}</code></pre><br />
    그래서 보통 jQuery 라이브러리 사용시 제공하는 메서드 사용<br />
-      $(“#action-btn”).on(“click”, doSomething);
+      <pre><code>$(“#action-btn”).on(“click”, doSomething);</code></pre>
   5. custum event : 사용자 정의 이벤트는 unbind가 용이하도록 하고, 별도의 namespace를 사용하라.
-  6. chaining : 두 번 이상 사용되는 DOM 요소는 캐시를 사용하라. 메서드 체이닝을 적극적으로 사용하고, 3번 이상하면 가독성에 문제가 있으니 줄바꿈을 사용하라.<br />
-	ex) $(selector)<br />
-			.css({ top:10, left:20 })<br />
-			.animate({ top:10, left:20 }, 500)<br />
-			.addClass('on');
-  7. 같은기능의 메서드를 2번 이상 사용할 경우에는 객체형태로 사용하라.<br />
-    ex) $(selector).css({ top:10, left:20 });
+  6. chaining : 두 번 이상 사용되는 DOM 요소는 캐시를 사용하라. 메서드 체이닝을 적극적으로 사용하고, 3번 이상하면 가독성에 문제가 있으니 줄바꿈을 사용하라.
+	<pre><code>ex) $(selector)
+		.css({ top:10, left:20 })
+		.animate({ top:10, left:20 }, 500)
+		.addClass('on');
+	</code></pre>
+	
+  7. 같은기능의 메서드를 2번 이상 사용할 경우에는 객체형태로 사용하라.
+    <pre><code>ex) $(selector).css({ top:10, left:20 });</code></pre>
 <br />
 
 ## 6. 네이밍규칙
   1. 기본 함수, 변수명은 최대한 직관적이고 의미있는 단어의 조합으로 표기하며, 소문자 낙타법(카멜표기법 : 첫단어소문자,두번째이상 단어조합부터 대문자)을 따른다.
   2. 네이밍  타입은 변수의 범위와 용도에 따라 총 6가지<br />
-    - [ 제한 private ][ 공유 public ][ 전역 global ][ 지역 local ][ 스타틱변수(상수) static ][ 매개변수 Parameters ]<br />
-	var DIV = 'div';								// [ 전역변수 ][ 공유 ][ 제한 ]<br />
-	var Div = 1; 									// [ 전역변수 ][ 공유 ]<br />
-	var _div = 1;									// [ 전역변수 ][ 제한 ]<br />
-	var _isDiv = false;  							// [ 전역부울값 ][ 제한 ]<br />
-	var _$div = $( '.divClassName' );			// [ 전역변수 ][ 제한 ][ jQuery ]<br />
-	function Init(){								// [ 전역함수 ][ 공유 ]<br />
-		var div = 1;								// [ 지역변수 ][ 제한 ]<br />
-		var $div = $( '.divClassName' );   	// [ 지역변수 ][ 제한 ][ jQuery ]<br />
-		var isDiv = false;							// [ 지역부울값 ][ 제한 ]<br />
-		function func(name ){					// [ 지역함수 ][ 제한 ]<br />
-			console.log(name ); 				// [ 매개변수 ][ 제한 ]<br />
-		}<br />
-	}<br />
+    - [ 제한 private ][ 공유 public ][ 전역 global ][ 지역 local ][ 스타틱변수(상수) static ][ 매개변수 Parameters ]
+
+	<pre><code>
+	var DIV = 'div';							// [ 전역변수 ][ 공유 ][ 제한 ]
+	var Div = 1; 								// [ 전역변수 ][ 공유 ]
+	var _div = 1;								// [ 전역변수 ][ 제한 ]
+	var _isDiv = false;  							// [ 전역부울값 ][ 제한 ]
+	var _$div = $( '.divClassName' );					// [ 전역변수 ][ 제한 ][ jQuery ]
+	function Init(){							// [ 전역함수 ][ 공유 ]
+		var div = 1;							// [ 지역변수 ][ 제한 ]
+		var $div = $( '.divClassName' );   				// [ 지역변수 ][ 제한 ][ jQuery ]
+		var isDiv = false;						// [ 지역부울값 ][ 제한 ]
+		function func(name ){						// [ 지역함수 ][ 제한 ]
+			console.log(name ); 					// [ 매개변수 ][ 제한 ]
+		}
+	}</code></pre>
   3. is : 반환 값이 불린인 함수나 변수,<br />
     get : 불린 이외의 값을 반환하는 함수,<br />
 	set : 값을 저장하기 위해 사용하는 함수<br />
-	등 함수명은 동사+명사의 형태로 사용하기를 추천한다.
+	등 함수명은 동사+명사의 형태로 사용하기를 추천한다.<br />
   4. 그외, protected, override
   5. 자바스크립트의 기본 예약어를 제외 한 모듈패턴에서 사용할 예약어는 window, document, $, Init() 등
 <br />
