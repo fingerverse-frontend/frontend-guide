@@ -24,7 +24,7 @@
 
 ## 2. 디렉토리, 파일 구성
   1. HTML, CSS, JS, Image를  별도의 파일로 분리하고, 각각의 폴더에서 관리한다.<br />
-     ex) /js/ , /css/, /img/
+    ex) /js/ , /css/, /img/
   2. 오픈소스나 라이브러리 같은 외부 코드를 내부 개발 코드와 분리하고, 각각의 폴더에서 관리한다.<br />
     ex) /js/libs/ 혹은 /js/libs/jquery/
   3. 내부 개발 코드도 서비스 코드와 공용 코드(유틸, 컴포넌트)를 분리, 별도의 폴더나 파일명을 생성하여 관리한다.
@@ -60,7 +60,8 @@
    ready event handler 내에 익명 함수를 사용하지 마라.<br />
    ready event handler는 자바스크립트 파일을 모두 로드한 후 외부 파일 인라인에서 포함되어 실행되어야 한다.
   3. selector : jquery의 selector 는 별도로 $식별자를 사용하여 변수화 하고, 최적화하라.<br />
-   selector사용 시 element의 유무를 확인하고 실행하라. Ex) if ($mySelection.length) {
+   selector사용 시 element의 유무를 확인하고 실행하라. <br />
+    Ex) if ($mySelection.length) {
   4. event : 이벤트핸들러는 함수로 구분하여 사용<br />
    IE8 이하 버전 addEventListener()를 지원하지 않으므로, 다음 함수가 필요하다.
 	<pre><code>function addListener(target, type, handler){
@@ -89,7 +90,7 @@
 ## 6. 네이밍규칙
   1. 기본 함수, 변수명은 최대한 직관적이고 의미있는 단어의 조합으로 표기하며, 소문자 낙타법(카멜표기법 : 첫단어소문자,두번째이상 단어조합부터 대문자)을 따른다.
   2. 네이밍  타입은 변수의 범위와 용도에 따라 총 6가지<br />
-    - [ 제한 private ][ 공유 public ][ 전역 global ][ 지역 local ][ 스타틱변수(상수) static ][ 매개변수 Parameters ]
+    : [ 제한 private ][ 공유 public ][ 전역 global ][ 지역 local ][ 스타틱변수(상수) static ][ 매개변수 Parameters ]
 
 	<pre><code>var DIV = 'div';							// [ 전역변수 ][ 공유 ][ 제한 ]
 	var Div = 1; 								// [ 전역변수 ][ 공유 ]
@@ -118,12 +119,12 @@
 <br />
 
 ## 8. 추가작성 이슈
-  #크로스브라우징<br />
-  #유효성 검사<br />
-  #파일처리(json, ajax)<br />
-  #최소화와 압축 - 난독화<br />
-  #테스트 자동화 등<br />
-* 코드에서 구성 데이터 분리하기/저장하기 - 제안
+  * 크로스브라우징
+  * 유효성 검사
+  * 파일처리(json, ajax)
+  * 최소화와 압축 - 난독화
+  * 테스트 자동화 등<br />
+- 코드에서 구성 데이터 분리하기/저장하기 - 제안
 	
 
 
