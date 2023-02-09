@@ -1,2 +1,2 @@
 # frontend-guide
-AdQUA Frontend Script Guide
+Fingerverse Frontend Script Guide
